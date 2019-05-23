@@ -8,13 +8,14 @@ gulp.task('lint', function() {
         .pipe(eslint.failOnError());
 });
 
-gulp.task('copy', ['lint'], function() {
+
+gulp.task('copy', gulp.series('lint', function() {
     return gulp.src([
         'src/check.png',
         'src/iconLayers.js',
         'src/iconLayers.css',
         'src/transparent-pixel.png'
     ]).pipe(gulp.dest('dist'));
-});
+}));
 
-gulp.task('default', ['lint', 'copy']);
+gulp.task('default', gulp.series('lint', 'copy'));

@@ -56,18 +56,6 @@
             parent.appendChild(el);
         }
     }
-    function insertAfter(newEl, targetEl)
-    {
-        var parentEl = targetEl.parentNode;
-
-        if(parentEl.lastChild == targetEl)
-        {
-            parentEl.appendChild(newEl);
-        }else
-        {
-            parentEl.insertBefore(newEl,targetEl.nextSibling);
-        }
-    }
 
     var IconLayers = L.Control.extend({
         includes: L.Evented ? L.Evented.prototype : L.Mixin.Events,
@@ -88,8 +76,8 @@
                 return this._layers[this._previousLayerId];
             } else {
                 return find(this._layers, function(l) {
-                        return l.id !== activeLayer.id;
-                    }.bind(this)) || null;
+                    return l.id !== activeLayer.id;
+                }.bind(this)) || null;
             }
         },
         _getInactiveLayers: function() {
@@ -310,7 +298,7 @@
             this._arrangeLayers().map(function(l) {
                 var el = this._getLayerCellByLayerId(l.id);
                 var activeLayerId = this._getActiveLayer() && this._getActiveLayer().id;
-                if(l.id!==activeLayerId){
+                if (l.id!==activeLayerId) {
                     L.DomUtil.addClass(el, 'leaflet-iconLayers-layerCell_hidden');
                 }
             }.bind(this));
