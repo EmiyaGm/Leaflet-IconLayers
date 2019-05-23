@@ -70,6 +70,7 @@
     }
 
     var IconLayers = L.Control.extend({
+        
         includes: L.Evented ? L.Evented.prototype : L.Mixin.Events,
         _getActiveLayer: function() {
             if (this._activeLayerId) {
